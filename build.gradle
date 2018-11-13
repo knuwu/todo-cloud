@@ -1,0 +1,66 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id "org.asciidoctor.convert" version "1.5.8"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+test {
+    outputs.dir snippetsDir
+}
+
+asciidoctor {
+    attributes 'snippets' : snippetsDir
+    inputs.dir snippetsDir
+    outputDir "build/asciidoc"
+    dependsOn test
+    sourceDir 'src/main/asciidoc'
+}
+
+group = 'ch.inetware'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 10
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    // implementation('org.springframework.boot:spring-boot-starter-security')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    compileOnly('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile("com.h2database:h2")
+    compile('mysql:mysql-connector-java')
+    compile('org.flywaydb:flyway-core:5.2.1')
+    compile("io.springfox:springfox-swagger2:2.9.2")
+    compile("io.springfox:springfox-swagger-ui:2.9.2")
+    compile("io.springfox:springfox-bean-validators:2.9.2")
+    compile('org.springframework.restdocs:spring-restdocs-restassured:2.0.2.RELEASE')
+    compileClasspath('org.springframework.boot:spring-boot-test')
+    compileClasspath('org.springframework.boot:spring-boot-test-autoconfigure')
+    testCompile('io.rest-assured:rest-assured:3.2.0')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    // testImplementation('org.springframework.security:spring-security-test')
+}

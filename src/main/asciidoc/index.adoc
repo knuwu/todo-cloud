@@ -1,0 +1,9 @@
+= Todo-API Dokumentation
+
+Auflistung aller im System gespeicherten Todo-Einträge.
+
+.request
+include::{snippets}/list-todos/http-request.adoc[]
+
+.response
+include::{snippets}/list-todos/http-response.adoc[]
