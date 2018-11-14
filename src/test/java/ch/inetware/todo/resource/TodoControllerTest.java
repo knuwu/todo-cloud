@@ -1,6 +1,7 @@
 package ch.inetware.todo.resource;
 
 import io.restassured.specification.RequestSpecification;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,19 @@ public class TodoControllerTest {
   }
 
   @Test
-  public void getOneTodos() throws Exception {
-    given(this.documentationSpec).filter(document("list-todos"))
-            .when().port(this.port).get("/v1/todos/2").then()
+  @Ignore
+  public void addOneTodo() throws Exception {
+    given(this.documentationSpec).filter(document("add-one-todo"))
+            .contentType("application/json")
+            .body("{\"title\": \"Das ist ein Titel\", \"description\": \"Das ist ein schönes Todo\"}")
+            .when().port(this.port).post("/v1/todos").then()
+            .assertThat().statusCode(is(200));
+  }
+
+  @Test
+  public void getOneTodo() throws Exception {
+    given(this.documentationSpec).filter(document("get-one-todo"))
+            .when().port(this.port).get("/v1/todos/1").then()
             .assertThat().statusCode(is(200));
   }
 }

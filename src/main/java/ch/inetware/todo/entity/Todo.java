@@ -27,12 +27,10 @@ public class Todo {
   @JsonProperty
   @NotNull
   @ApiModelProperty(notes = "Titel des Todo-Eintrags",example = "Dies ist ein Todo-Titel", position = 2)
-  @Min(3) @Max(256)
   private String title;
 
   @JsonProperty
   @ApiModelProperty(notes = "Beschreibung des Todo-Eintrags",example = "Ein wunderschönes Beispiel.", position = 3)
-  @Min(0) @Max(8192)
   private String description;
 
   public Todo() {}
