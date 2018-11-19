@@ -61,6 +61,7 @@ dependencies {
     compileClasspath('org.springframework.boot:spring-boot-test')
     compileClasspath('org.springframework.boot:spring-boot-test-autoconfigure')
     testCompile('io.rest-assured:rest-assured:3.2.0')
+    testCompile('com.h2database:h2')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     // testImplementation('org.springframework.security:spring-security-test')
 }

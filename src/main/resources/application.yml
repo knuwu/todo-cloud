@@ -5,6 +5,7 @@ spring:
 
   datasource:
     url: "jdbc:mysql://localhost:3306/todo"
-    username: todo
+    #    url: "jdbc:mysql://localhost:3306/todo?useSSL=false"
+    username: ralph
     password: ganymed$3
 
